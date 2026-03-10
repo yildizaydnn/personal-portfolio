@@ -30,48 +30,87 @@ export const Navbar = () => {
             }`}
             style={{ transform: 'translate3d(0,0,0)' }}
         >
-            <div className=''>
-                <div className=''>
-                    {/* logo */}
-                    <div className='flex items-center gap-4'>
-                        <Code className='w-6 h-6 text-primary' />
+            <div className='max-w-[1320px] mx-auto px-5'>
+                <div className='grid grid-cols-3 items-center'>
+                    {/* left: logo */}
+                    <div className='flex items-center gap-3 -ml-4'>
+                        <Code className='w-5 h-5 text-primary' />
 
                         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                            className='text-2xl font-bold text-white'
+                            className='text-3xl font-bold text-primary hover:opacity-80 transition-opacity'
                             aria-label='home'>
                             {PERSONAL_INFO.name.split(' ')[0]}
 
                         </button>
+                    </div>
 
-                        {/* dekstop navigation */}
-                        <nav className=''>
-                            {NAV_LINKS.map(link => (
+                    {/* center: desktop navigation */}
+                    <div className='hidden md:flex items-center justify-center'>
+                        <nav className='flex items-center gap-7'>
+                            {NAV_LINKS.filter(link => link.id !== 'contact').map(link => (
                                 <button key={link.id}
                                     onClick={() => handleNewClick(link.id)}
-                                    className={`text-base font-medium transition-all duration-300
-                                         ${activeSection === link.id ? 'text-white' : 'text-white/70 hover:text-white'}`}
+                                    className={`text-lg font-medium transition-all duration-300 ${activeSection === link.id ? 'text-white' : 'text-white/70 hover:text-white'}`}
                                     aria-label={link.label}
                                 >
                                     {link.label}
                                 </button>
                             ))}
                         </nav>
+                    </div>
 
-                        {/* cta button */}
-                        <div className=''>
+                    {/* right: CTA + mobile menu */}
+                    <div className='flex items-center justify-end gap-2'>
+                        <div className='hidden md:flex items-center gap-2'>
                             <button onClick={() => handleNewClick('contact')}
-                                className=''
+                                className='px-7 py-3 bg-white text-[#212121] font-medium text-lg rounded-[17px] border border-white hover:bg-white/90 transition-all duration-300'
                             >
                                 İletişim
-
                             </button>
-
                         </div>
 
+                        {/* mobile menu toggle */}
+                        <button onClick={() => setIsMenuOpen(prev => !prev)} className='md:hidden p-2'>
+                            {isMenuOpen ? <X className='w-6 h-6 text-white' /> : <Menu className='w-6 h-6 text-white' />}
+                        </button>
                     </div>
 
                 </div>
 
+                {/* mobile menu overlay */}
+                {isMenuOpen && (
+                    <div className='md:hidden fixed inset-0 z-50 bg-black p-6 flex flex-col'>
+                        <div className='flex items-center justify-between'>
+                            <div className='flex items-center gap-3 -ml-6'>
+                                <Code className='w-6 h-6 text-primary' />
+                                <span className='text-3xl font-bold text-primary'>{PERSONAL_INFO.name.split(' ')[0]}</span>
+                            </div>
+
+                            <button onClick={() => setIsMenuOpen(false)} aria-label='close' className='p-2'>
+                                <X className='w-6 h-6 text-white' />
+                            </button>
+                        </div>
+
+                        <nav className='flex flex-col gap-8 mt-8'>
+                            {NAV_LINKS.filter(link => link.id !== 'contact').map(link => (
+                                <button key={link.id}
+                                    onClick={() => handleNewClick(link.id)}
+                                    className='text-2xl text-white/80 hover:text-white text-left'
+                                >
+                                    {link.label}
+                                </button>
+                            ))}
+                        </nav>
+
+                        <div className='mt-12 mb-12'>
+                            <button onClick={() => handleNewClick('contact')}
+                                className='w-full py-4 bg-white text-[#212121] font-medium rounded-[17px] border border-white hover:bg-white/95'
+                            >
+                                İletişim
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
 
         </nav>
