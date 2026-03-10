@@ -20,8 +20,13 @@ export const SOCIAL_LINKS = {
 
 export const NAV_LINKS = [
   { id: "about", label: "Hakkımda" },
-  { id: "skills", label: "Yetenekler" },
   { id: "projects", label: "Projeler" },
-  { id: "services", label: "Hizmetler" },
   { id: "contact", label: "İletişim" },
+];
+
+export const ABOUT_STATS = [
+  { value: "3+", label: "Yıl Deneyim" },
+  { value: "20+", label: "Tamamlanan Proje" },
+  { value: "10+", label: "Teknoloji" },
+  { value: "100%", label: "Müşteri Memnuniyeti" },
 ];

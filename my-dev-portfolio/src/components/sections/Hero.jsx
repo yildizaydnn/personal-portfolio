@@ -3,8 +3,8 @@ import { PERSONAL_INFO } from '../../utils/constants'
 import { scrollToSection } from '../../hooks/useScrollSpy'
 import FadeIn from '../animations/FadeIn'
 import RadialGradientBackground from '../backgrounds/RadialGradientBackground'
-import { Star } from 'lucide-react'
-import { SiNextdotjs, SiReact, SiNodedotjs, SiTailwindcss, SiMongodb } from 'react-icons/si'
+import { Star, ChevronDown } from 'lucide-react'
+import { SiNextdotjs, SiReact, SiNodedotjs, SiSwift, SiJavascript, SiMongodb } from 'react-icons/si'
 
 export const Hero = () => {
     return (
@@ -72,7 +72,7 @@ export const Hero = () => {
                                     />
                                 </div>{/* end inner content */}
                                 {/* technology logos — resmin altında */}
-                                <div className='flex gap-3 mt-6 justify-center'>
+                                <div className='flex flex-wrap gap-3 mt-6 justify-center'>
                                     <div className='bg-black/60 backdrop-blur-sm rounded-xl p-2.5'>
                                         <SiReact className='w-6 h-6 text-cyan-400' />
                                     </div>
@@ -83,7 +83,13 @@ export const Hero = () => {
                                         <SiNodedotjs className='w-6 h-6 text-green-500' />
                                     </div>
                                     <div className='bg-black/60 backdrop-blur-sm rounded-xl p-2.5'>
-                                        <SiTailwindcss className='w-6 h-6 text-sky-400' />
+                                        <SiReact className='w-6 h-6 text-cyan-400' />
+                                    </div>
+                                    <div className='bg-black/60 backdrop-blur-sm rounded-xl p-2.5'>
+                                        <SiSwift className='w-6 h-6 text-orange-400' />
+                                    </div>
+                                    <div className='bg-black/60 backdrop-blur-sm rounded-xl p-2.5'>
+                                        <SiJavascript className='w-6 h-6 text-yellow-400' />
                                     </div>
                                     <div className='bg-black/60 backdrop-blur-sm rounded-xl p-2.5'>
                                         <SiMongodb className='w-6 h-6 text-green-400' />
@@ -95,6 +101,14 @@ export const Hero = () => {
 
                 </div>
             </div>
+
+            {/* scroll indicator */}
+            <button onClick={() => scrollToSection('about')}
+                className='absolute bottom-8 left-1/2  -translate-x-1/2 animate-bounce'
+            >
+                <ChevronDown className="" />
+
+            </button>
         </section>
     )
 }
