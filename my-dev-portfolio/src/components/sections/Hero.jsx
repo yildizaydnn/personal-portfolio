@@ -5,8 +5,11 @@ import FadeIn from '../animations/FadeIn'
 import RadialGradientBackground from '../backgrounds/RadialGradientBackground'
 import { Star, ChevronDown } from 'lucide-react'
 import { SiNextdotjs, SiReact, SiNodedotjs, SiSwift, SiJavascript, SiMongodb } from 'react-icons/si'
+import { useLanguage } from '../../context/LanguageContext'
 
 export const Hero = () => {
+    const { content } = useLanguage()
+
     return (
         <section className='relative min-h-screen flex items-center overflow-hidden bg-black'>
             <RadialGradientBackground variant="hero" />
@@ -21,22 +24,21 @@ export const Hero = () => {
                                 bg-[#1a2e1a] border border-green-900/30 rounded-full'>
                                 <Star className='w-4 h-4 text-green-500 fill-green-500' />
                                 <span className='text-[13px] md:text-sm text-green-100/90 tracking-wider font-medium'>
-                                    {PERSONAL_INFO.title} | {PERSONAL_INFO.location}
+                                    {content.hero.title} | {content.hero.location}
                                 </span>
                             </div>
                         </FadeIn>
 
                         <FadeIn delay={150}>
                             <h1 className='text-6xl md:text-8xl lg:text-[100px] xl:text-[110px] font-semibold text-white leading-none mb-10 tracking-tighter'>
-                                Merhaba, <br />
-                                <span className='text-white'>Ben Yıldız</span>
+                                {content.hero.headingPrefix} <br />
+                                <span className='text-white'>{content.hero.headingName}</span>
                             </h1>
                         </FadeIn>
 
                         <FadeIn delay={250}>
-                            <p className='text-lg md:text-xl text-white/70 max-w-[550px] mb-12 leading-relaxed font-light'>
-                                Modern web ve mobil teknolojileriyle kullanıcı odaklı uygulamalar
-                                geliştiren bir bilgisayar mühendisiyim.
+                            <p className='text-lg md:text-xl text-white/70 max-w-137.5 mb-12 leading-relaxed font-light'>
+                                {content.hero.description}
                             </p>
                         </FadeIn>
 
@@ -46,7 +48,7 @@ export const Hero = () => {
                                 className='px-10 py-4 bg-white text-black text-lg font-semibold
                                 rounded-full hover:bg-gray-200 transition-all duration-300'
                             >
-                                Bana Ulaş
+                                {content.hero.cta}
                             </button>
                         </FadeIn>
                     </div>
@@ -55,7 +57,7 @@ export const Hero = () => {
                     <FadeIn delay={200}>
                         <div className='relative flex justify-center lg:justify-end'>
                             {/* spinning gradient border wrapper */}
-                            <div className='relative w-full max-w-[460px] p-[2px] rounded-2xl'>
+                            <div className='relative w-full max-w-115 p-0.5 rounded-2xl'>
                                 {/* spinning gradient layer */}
                                 <div
                                     className='absolute inset-0 rounded-2xl animate-spin-slow'

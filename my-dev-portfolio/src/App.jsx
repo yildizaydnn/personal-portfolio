@@ -4,19 +4,22 @@ import Hero from './components/sections/Hero'
 import About from './components/sections/About'
 import Projects from './components/sections/Projects'
 import Contact from './components/sections/Contact'
+import { LanguageProvider } from './context/LanguageContext'
 
 const App = () => {
   return (
-    <div className='min-h-screen bg-black pb-[100vh]'>
-      <Navbar />
+    <LanguageProvider>
+      <div className='min-h-screen bg-black pb-[100vh]'>
+        <Navbar />
 
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Contact />
-      </main>
-    </div>
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Contact />
+        </main>
+      </div>
+    </LanguageProvider>
 
   )
 }

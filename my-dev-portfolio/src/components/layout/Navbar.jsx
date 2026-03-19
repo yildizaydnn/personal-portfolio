@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Code, Menu, X } from 'lucide-react'
 import { NAV_LINKS, PERSONAL_INFO } from '../../utils/constants'
 import { useScrollSpy, scrollToSection } from '../../hooks/useScrollSpy'
+import { useLanguage } from '../../context/LanguageContext'
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
-    const activeSection = useScrollSpy(NAV_LINKS.map(link => link.href))
+    const { content, setLanguage, language } = useLanguage()
+    const activeSection = useScrollSpy(NAV_LINKS.map(link => link.id))
+
+    const navLinks = NAV_LINKS.map(link => ({
+        ...link,
+        label: content.navLinks[link.id],
+    }))
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,7 +37,7 @@ export const Navbar = () => {
             }`}
             style={{ transform: 'translate3d(0,0,0)' }}
         >
-            <div className='max-w-[1320px] mx-auto px-5'>
+            <div className='max-w-330 mx-auto px-5'>
                 <div className='grid grid-cols-3 items-center'>
                     {/* left: logo */}
                     <div className='flex items-center gap-3 -ml-4'>
@@ -47,7 +54,7 @@ export const Navbar = () => {
                     {/* center: desktop navigation */}
                     <div className='hidden md:flex items-center justify-center'>
                         <nav className='flex items-center gap-7'>
-                            {NAV_LINKS.filter(link => link.id !== 'contact').map(link => (
+                            {navLinks.filter(link => link.id !== 'contact').map(link => (
                                 <button key={link.id}
                                     onClick={() => handleNewClick(link.id)}
                                     className={`text-lg font-medium transition-all duration-300 ${activeSection === link.id ? 'text-white' : 'text-white/70 hover:text-white'}`}
@@ -62,10 +69,17 @@ export const Navbar = () => {
                     {/* right: CTA + mobile menu */}
                     <div className='flex items-center justify-end gap-2'>
                         <div className='hidden md:flex items-center gap-2'>
+                            <button
+                                onClick={() => setLanguage(language === 'tr' ? 'en' : 'tr')}
+                                className='px-3 py-2 bg-white/5 text-white/80 text-sm font-semibold rounded-xl border border-white/15 hover:bg-white/10 transition-all duration-300'
+                                aria-label={content.navbar.languageAria}
+                            >
+                                {content.navbar.languageSwitch}
+                            </button>
                             <button onClick={() => handleNewClick('contact')}
                                 className='px-7 py-3 bg-white text-[#212121] font-medium text-lg rounded-[17px] border border-white hover:bg-white/90 transition-all duration-300'
                             >
-                                İletişim
+                                {content.navbar.cta}
                             </button>
                         </div>
 
@@ -92,7 +106,7 @@ export const Navbar = () => {
                         </div>
 
                         <nav className='flex flex-col gap-8 mt-8'>
-                            {NAV_LINKS.filter(link => link.id !== 'contact').map(link => (
+                            {navLinks.filter(link => link.id !== 'contact').map(link => (
                                 <button key={link.id}
                                     onClick={() => handleNewClick(link.id)}
                                     className='text-2xl text-white/80 hover:text-white text-left'
@@ -103,10 +117,17 @@ export const Navbar = () => {
                         </nav>
 
                         <div className='mt-12 mb-12'>
+                            <button
+                                onClick={() => setLanguage(language === 'tr' ? 'en' : 'tr')}
+                                className='w-full py-3 mb-3 bg-white/5 text-white/80 font-semibold rounded-[14px] border border-white/15 hover:bg-white/10 transition-all duration-300'
+                                aria-label={content.navbar.languageAria}
+                            >
+                                {content.navbar.languageSwitch}
+                            </button>
                             <button onClick={() => handleNewClick('contact')}
                                 className='w-full py-4 bg-white text-[#212121] font-medium rounded-[17px] border border-white hover:bg-white/95'
                             >
-                                İletişim
+                                {content.navbar.cta}
                             </button>
                         </div>
                     </div>

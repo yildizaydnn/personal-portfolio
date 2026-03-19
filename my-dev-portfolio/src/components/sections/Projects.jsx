@@ -3,8 +3,9 @@ import { Github, ExternalLink, Layers } from 'lucide-react'
 import { projects } from '../../data/project'
 import FadeIn from '../animations/FadeIn'
 import RadialGradientBackground from '../backgrounds/RadialGradientBackground'
+import { useLanguage } from '../../context/LanguageContext'
 
-const filterCategories = ['Tümü', 'Web', 'Mobil', '3D/AR']
+const filterCategoryKeys = ['all', 'web', 'mobile', 'ar3d']
 
 const getImages = (project) => {
     const raw = project.images || project.image
@@ -13,18 +14,13 @@ const getImages = (project) => {
 }
 
 const Projects = () => {
-    const [activeFilter, setActiveFilter] = useState('Tümü')
+    const { content, language } = useLanguage()
+    const [activeFilter, setActiveFilter] = useState('all')
     const [activeImage, setActiveImage] = useState({})
 
-    const filteredProjects = activeFilter === 'Tümü'
+    const filteredProjects = activeFilter === 'all'
         ? projects
-        : projects.filter(p => {
-            const cat = p.category.toLowerCase()
-            if (activeFilter === 'Web') return cat.includes('web') || (cat.includes('uygulama') && !cat.includes('mobil'))
-            if (activeFilter === 'Mobil') return cat.includes('mobil')
-            if (activeFilter === '3D/AR') return cat.includes('3d') || cat.includes('ar')
-            return true
-        })
+        : projects.filter(p => p.categoryKey === activeFilter)
 
     const getActiveImageIndex = (id) => activeImage[id] ?? 0
 
@@ -43,20 +39,20 @@ const Projects = () => {
                 <FadeIn delay={0}>
                     <div className='flex items-center gap-3 mb-4'>
                         <Layers className='w-5 h-5 text-primary' />
-                        <span className='text-primary text-sm font-medium tracking-widest uppercase'>Projeler</span>
+                        <span className='text-primary text-sm font-medium tracking-widest uppercase'>{content.projects.sectionLabel}</span>
                     </div>
                     <h2 className='text-4xl md:text-5xl font-semibold text-white mb-4'>
-                        Projelerim
+                        {content.projects.heading}
                     </h2>
                     <p className='text-white/50 text-lg font-light mb-12 max-w-xl'>
-                        Gerçek kullanıcı ihtiyaçlarından doğan, modern teknolojilerle hayata geçirilen projeler.
+                        {content.projects.description}
                     </p>
                 </FadeIn>
 
                 {/* filter tabs */}
                 <FadeIn delay={100}>
                     <div className='flex flex-wrap gap-3 mb-14'>
-                        {filterCategories.map(cat => (
+                        {filterCategoryKeys.map(cat => (
                             <button
                                 key={cat}
                                 onClick={() => setActiveFilter(cat)}
@@ -66,7 +62,7 @@ const Projects = () => {
                                         : 'bg-white/5 text-white/60 border border-white/10 hover:bg-white/10 hover:text-white'
                                     }`}
                             >
-                                {cat}
+                                {content.projects.filters[cat]}
                             </button>
                         ))}
                     </div>
@@ -102,7 +98,7 @@ const Projects = () => {
                                             {/* category badge */}
                                             <span className='absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-sm
                                                 text-primary text-xs font-medium rounded-full border border-primary/20'>
-                                                {project.category}
+                                                {project.category[language]}
                                             </span>
 
                                             {/* image counter */}
@@ -129,9 +125,9 @@ const Projects = () => {
 
                                     {/* content */}
                                     <div className='flex flex-col flex-1 p-6'>
-                                        <h3 className='text-white text-xl font-semibold mb-3'>{project.title}</h3>
+                                        <h3 className='text-white text-xl font-semibold mb-3'>{project.title[language]}</h3>
                                         <p className='text-white/60 text-sm leading-relaxed mb-5 flex-1'>
-                                            {project.description}
+                                            {project.description[language]}
                                         </p>
 
                                         {/* tech tags */}
@@ -149,7 +145,7 @@ const Projects = () => {
                                         {project.metrics && (
                                             <div className='flex items-center gap-2 mb-5'>
                                                 <span className='w-1.5 h-1.5 rounded-full bg-primary shrink-0' />
-                                                <span className='text-primary text-xs font-medium'>{project.metrics}</span>
+                                                <span className='text-primary text-xs font-medium'>{project.metrics[language]}</span>
                                             </div>
                                         )}
 
@@ -169,7 +165,7 @@ const Projects = () => {
                                                     hover:bg-primary/20 text-primary text-sm rounded-xl
                                                     transition-all duration-200 border border-primary/20'>
                                                     <ExternalLink className='w-4 h-4' />
-                                                    {project.category === 'Mobil Uygulama' ? 'App Store' : 'Demo'}
+                                                    {project.categoryKey === 'mobile' ? content.projects.appStoreLabel : content.projects.demoLabel}
                                                 </a>
                                             )}
                                         </div>

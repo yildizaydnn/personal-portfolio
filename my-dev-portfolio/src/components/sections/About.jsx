@@ -1,11 +1,13 @@
 import React from 'react'
 import { Download, Code2, Sparkles } from 'lucide-react'
 import { SiReact, SiNextdotjs, SiJavascript, SiSwift, SiNodedotjs, SiMongodb } from 'react-icons/si'
-import { PERSONAL_INFO, ABOUT_STATS } from '../../utils/constants'
+import { ABOUT_STATS } from '../../utils/constants'
 import FadeIn from '../animations/FadeIn'
 import RadialGradientBackground from '../backgrounds/RadialGradientBackground'
+import { useLanguage } from '../../context/LanguageContext'
 
 const About = () => {
+    const { content } = useLanguage()
 
     // Skills
     const skills = [
@@ -28,10 +30,10 @@ const About = () => {
                 <FadeIn delay={0}>
                     <div className='flex items-center gap-3 mb-4'>
                         <Code2 className='w-5 h-5 text-primary' />
-                        <span className='text-primary text-sm font-medium tracking-widest uppercase'>Hakkımda</span>
+                        <span className='text-primary text-sm font-medium tracking-widest uppercase'>{content.about.sectionLabel}</span>
                     </div>
                     <h2 className='text-4xl md:text-5xl font-semibold text-white mb-16'>
-                        Beni Tanıyın<br />
+                        {content.about.heading}<br />
 
                     </h2>
                 </FadeIn>
@@ -42,7 +44,7 @@ const About = () => {
                     <div>
                         <FadeIn delay={100}>
                             <div className='space-y-5 mb-10'>
-                                {PERSONAL_INFO.bio.map((paragraph, i) => (
+                                {content.about.bio.map((paragraph, i) => (
                                     <p key={i} className='text-white/70 text-lg leading-relaxed font-light'>
                                         {paragraph}
                                     </p>
@@ -60,7 +62,7 @@ const About = () => {
                     <FadeIn delay={150}>
                         <div className='flex items-center gap-2 mb-6'>
                             <Sparkles className='w-5 h-5 text-primary' />
-                            <span className='text-white font-medium text-lg'>Teknolojiler</span>
+                            <span className='text-white font-medium text-lg'>{content.about.technologies}</span>
                         </div>
                         <div className='grid grid-cols-2 sm:grid-cols-3 gap-4'>
                             {skills.map((skill, i) => (

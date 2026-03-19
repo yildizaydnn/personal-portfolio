@@ -3,13 +3,15 @@ import { Mail, MapPin, Github, Linkedin, MessageSquare } from 'lucide-react'
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../../utils/constants'
 import FadeIn from '../animations/FadeIn'
 import RadialGradientBackground from '../backgrounds/RadialGradientBackground'
+import { useLanguage } from '../../context/LanguageContext'
 
 const Contact = () => {
+    const { content } = useLanguage()
 
     const contactInfo = [
         {
             icon: Mail,
-            label: 'E-posta',
+            label: content.contact.emailLabel,
             value: PERSONAL_INFO.email,
             href: `mailto:${PERSONAL_INFO.email}`,
         },
@@ -38,10 +40,10 @@ const Contact = () => {
                 <FadeIn delay={0}>
                     <div className='flex items-center gap-3 mb-4'>
                         <MessageSquare className='w-5 h-5 text-primary' />
-                        <span className='text-primary text-sm font-medium tracking-widest uppercase'>İletişim</span>
+                        <span className='text-primary text-sm font-medium tracking-widest uppercase'>{content.contact.sectionLabel}</span>
                     </div>
                     <h2 className='text-4xl md:text-5xl font-semibold text-white mb-4'>
-                        İletişim Kanallarım
+                        {content.contact.heading}
                     </h2>
 
                 </FadeIn>
