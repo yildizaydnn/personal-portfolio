@@ -18,6 +18,7 @@ const App = () => {
           <Projects />
           <Contact />
         </main>
+
       </div>
     </LanguageProvider>
 
