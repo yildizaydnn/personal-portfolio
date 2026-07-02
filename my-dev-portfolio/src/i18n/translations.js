@@ -1,41 +1,41 @@
 export const translations = {
   tr: {
     navLinks: {
-      about: "Hakkimda",
+      about: "Hakkımda",
       projects: "Projeler",
-      contact: "Iletisim",
+      contact: "İletişim",
     },
     navbar: {
-      cta: "Iletisim",
+      cta: "İletişim",
       languageSwitch: "EN",
-      languageAria: "Dili Ingilizceye gecir",
+      languageAria: "Dili İngilizceye geçir",
     },
     hero: {
-      title: "Bilgisayar Muhendisi & Full-Stack Developer",
-      location: "Istanbul, Turkiye",
+      title: "Bilgisayar Mühendisi & Full-Stack Developer",
+      location: "İstanbul, Türkiye",
       headingPrefix: "Merhaba,",
-      headingName: "Ben Yildiz",
+      headingName: "Ben Yıldız",
       description:
-        "Modern web ve mobil teknolojileriyle kullanici odakli uygulamalar gelistiren bir bilgisayar muhendisiyim.",
-      cta: "Bana Ulas",
+        "Modern web ve mobil teknolojileriyle kullanıcı odaklı uygulamalar geliştiren bir bilgisayar mühendisiyim.",
+      cta: "Bana Ulaş",
     },
     about: {
-      sectionLabel: "Hakkimda",
-      heading: "Beni Taniyin",
+      sectionLabel: "Hakkımda",
+      heading: "Beni Tanıyın",
       technologies: "Teknolojiler",
       bio: [
-        "Bilgisayar muhendisi olarak, karmasik problemleri modern teknolojilerle cozen ve kullanici deneyimini on planda tutan bir Full-Stack gelistiriciyim.",
-        "React ve Next.js ile performansli web arayuzleri, Node.js ile olceklenebilir backend sistemleri kurgularken; Swift ve React Native ile mobil dunyada guclu cozumler uretiyorum.",
-        "Sadece kod yazmaya degil, teknolojiyi bir arac olarak kullanarak gercek dunyadaki ihtiyaclara dokunan, verimli ve inovatif dijital urunler gelistirmeye odaklaniyorum.",
+        "Bilgisayar mühendisi olarak, karmaşık problemleri modern teknolojilerle çözen ve kullanıcı deneyimini ön planda tutan bir Full-Stack geliştiriciyim.",
+        "React ve Next.js ile performanslı web arayüzleri, Node.js ile ölçeklenebilir backend sistemleri kurgularken; Swift ve React Native ile mobil dünyada güçlü çözümler üretiyorum.",
+        "Sadece kod yazmaya değil, teknolojiyi bir araç olarak kullanarak gerçek dünyadaki ihtiyaçlara dokunan, verimli ve inovatif dijital ürünler geliştirmeye odaklanıyorum.",
       ],
     },
     projects: {
       sectionLabel: "Projeler",
       heading: "Projelerim",
       description:
-        "Gercek kullanici ihtiyaclarindan dogan, modern teknolojilerle hayata gecirilen projeler.",
+        "Gerçek kullanıcı ihtiyaçlarından doğan, modern teknolojilerle hayata geçirilen projeler.",
       filters: {
-        all: "Tumu",
+        all: "Tümü",
         web: "Web",
         mobile: "Mobil",
         ar3d: "3D/AR",
@@ -44,8 +44,8 @@ export const translations = {
       appStoreLabel: "App Store",
     },
     contact: {
-      sectionLabel: "Iletisim",
-      heading: "Iletisim Kanallarim",
+      sectionLabel: "İletişim",
+      heading: "İletişim Kanallarım",
       emailLabel: "E-posta",
     },
   },
@@ -62,9 +62,9 @@ export const translations = {
     },
     hero: {
       title: "Computer Engineer & Full-Stack Developer",
-      location: "Istanbul, Turkiye",
+      location: "İstanbul, Türkiye",
       headingPrefix: "Hi,",
-      headingName: "I'm Yildiz",
+      headingName: "I'm Yıldız",
       description:
         "I am a computer engineer building user-focused applications with modern web and mobile technologies.",
       cta: "Get In Touch",
